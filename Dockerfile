@@ -18,7 +18,7 @@ RUN gpg --keyserver pgp.mit.edu --recv-keys $BITCOIN_KEY_FINGERPRINT \
  && gpg --verify --trust-model=always SHA256SUMS.asc \
  && gpg --decrypt --output SHA256SUMS SHA256SUMS.asc \
  && grep "bitcoin-$BITCOIN_VERSION-linux64.tar.gz" SHA256SUMS | sha256sum -c - \
- && tar -xzf "bitcoin-$BITCOIN_VERSION-linux64.tar.gz" -C /usr/local --strip-components=1 \
+ && tar -xzf "bitcoin-$BITCOIN_VERSION-linux64.tar.gz" -C /usr --strip-components=1 \
  && rm "bitcoin-$BITCOIN_VERSION-linux64.tar.gz" SHA256SUMS.asc SHA256SUMS
 
 # Set user for VNC server (USER is only for build)

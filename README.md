@@ -18,20 +18,23 @@ Usage
 -----
 You can build with
 
-    ```bash
-    $ docker build -t bitcoin .
-    ```
+    (host) $ docker build -t bitcoin-vnc .
 
 Create and start with
 
-    ```bash
-    $ docker create --name=bitcoin -p 5901:5901 jimmysong76/bitcoin-vnc
-    $ docker start bitcoin
-    ```
+    (host) $ id
+    uid=XXXX(YYYY) gid=ZZZZ(YYYY)
+    (host) $ docker create --name=bitcoin -p 5901:5901 -v <bitcoin dir>:/bitcoin -e PUID=XXXX -e PGID=ZZZZ bitcoin-vnc
+    (host) $ docker start bitcoin
 
-You can connect to the vnc server using at <SERVER_NAME>:5901 using the password from password.txt (default is "password") where SERVER_NAME is the docker container host's name or IP.
+You can connect to the vnc server using at SERVER_NAME:5901 using the password from password.txt (default is "password") where SERVER_NAME is the docker container host's name or IP.
+
+Within the container, you can query bitcoin-cli like this:
+
+    (container) $ bitcoin-cli -datadir=/bitcoin getinfo
+
 
 Credit
 ------
 
-Based off of kaixhin/vnc.
+Based off of the docker image [kaixhin/vnc](https://github.com/Kaixhin/dockerfiles/tree/master/vnc).
