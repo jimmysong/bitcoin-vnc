@@ -21,7 +21,7 @@ RUN gpg --keyserver pgp.mit.edu --recv-keys $BITCOIN_KEY_FINGERPRINT \
  && tar -xzf "bitcoin-$BITCOIN_VERSION-linux64.tar.gz" -C /usr --strip-components=1 \
  && rm "bitcoin-$BITCOIN_VERSION-linux64.tar.gz" SHA256SUMS.asc SHA256SUMS
 
-RUN mkdir /root/.bitcoin && echo "datadir=/bitcoin">/root/.bitcoin/bitcoin.conf
+RUN ln -s /bitcoin /root/.bitcoin
 
 # Set user for VNC server (USER is only for build)
 ENV USER root
