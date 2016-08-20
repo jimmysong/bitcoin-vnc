@@ -29,9 +29,9 @@ Create and start with
 
 You can connect to the vnc server using at SERVER_NAME:5901 using the password from password.txt (default is "password") where SERVER_NAME is the docker container host's name or IP.
 
-Within the container, you can query bitcoin-cli like this:
+Within the container, you can query use bitcoin-cli as normal:
 
-    (container) $ bitcoin-cli -datadir=/bitcoin getinfo
+    (container) $ bitcoin-cli getinfo
 
 
 Credit

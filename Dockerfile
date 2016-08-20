@@ -1,5 +1,5 @@
 FROM ubuntu:14.04
-MAINTAINER Jimmy Song <jaejoon@gmail.com>
+MAINTAINER Jimmy Song <http://github.com/jimmysong>
 
 # Install LXDE and VNC server
 RUN apt-get update \
@@ -20,6 +20,8 @@ RUN gpg --keyserver pgp.mit.edu --recv-keys $BITCOIN_KEY_FINGERPRINT \
  && grep "bitcoin-$BITCOIN_VERSION-linux64.tar.gz" SHA256SUMS | sha256sum -c - \
  && tar -xzf "bitcoin-$BITCOIN_VERSION-linux64.tar.gz" -C /usr --strip-components=1 \
  && rm "bitcoin-$BITCOIN_VERSION-linux64.tar.gz" SHA256SUMS.asc SHA256SUMS
+
+RUN mkdir /root/.bitcoin && echo "datadir=/bitcoin">/root/.bitcoin/bitcoin.conf
 
 # Set user for VNC server (USER is only for build)
 ENV USER root
